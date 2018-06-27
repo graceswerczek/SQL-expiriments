@@ -1,3 +1,5 @@
+-- outline of schema SQL, 3 main tables
+
 CREATE DATABASE QX_data
 
 CREATE TABLE UserInfo (
@@ -33,7 +35,7 @@ CREATE TABLE UserInfo (
   UserInterests CLOB
   UserResume BLOB,
  );
- 
+
  CREATE TABLE JobInfo (
    JobID INT primary key,
    JobName VARCHAR(30) NOT NULL,
@@ -48,6 +50,7 @@ CREATE TABLE UserInfo (
    JobQualifications CLOB,
    JobInterests VARCHAR(30),
    JobAppDeadline DATETIME NOT NULL,
+   JobFlexible BIT, NOT NULL
  );
  
  CREATE TABLE ServiceInfo (
@@ -62,4 +65,16 @@ CREATE TABLE UserInfo (
    ServiceAppDeadline DATETIME NOT NULL,
  );
  
- \n 
+ /* starting of PL/SQL 
+  * some of this is dependant on python code from seperate source
+  * python source includes algorythm for percent match system and
+  * backend communication with the controller and model to return
+  * views and data from this database.
+  */
+ 
+  -- view for results of percent match system (tentative)
+  CREATE VIEW percent_match_results  AS 
+  SELECT JobWage, JobAddress, JobFlexible JobHours
+  FROM JobInfo 
+  [WHERE ]; -- conditions go here from percent match code
+  
